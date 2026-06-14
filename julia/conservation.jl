@@ -40,7 +40,7 @@ conservation_efficiency(n::Int)::Float64 = 1.0 - conservation_delta(n)
 Generate n random ternary signals {-1, 0, +1} with uniform probability.
 """
 function ternary_signals(n::Int)::Vector{Int8}
-    return Int8[rand(-1, 0, 1) for _ in 1:n]
+    return Int8[rand([-1, 0, 1]) for _ in 1:n]
 end
 
 """
@@ -173,7 +173,7 @@ function monte_carlo_cancellation(n_agents::Int, n_trials::Int)::Float64
     
     Threads.@threads for t in 1:n_trials
         tid = Threads.threadid()
-        signals = Int8[rand(-1, 0, 1) for _ in 1:n_agents]
+        signals = Int8[rand([-1, 0, 1]) for _ in 1:n_agents]
         total_cancel[tid] += fleet_cancellation(signals)
     end
     
@@ -206,11 +206,12 @@ end
 
 end # module
 
+using .Conservation
+using Printf
+using Random
+
 # ═══ Main Benchmark (run as script) ═══
 if abspath(PROGRAM_FILE) == @__FILE__
-    using .Conservation
-    using Printf
-    
     println("═══ SuperInstance Conservation Law — Julia ═══")
     println("Julia threads: $(Threads.nthreads())")
     println()
@@ -237,7 +238,7 @@ if abspath(PROGRAM_FILE) == @__FILE__
     println("─── Conservation Identity γ + η = C ───")
     Random.seed!(42)
     G = ternary_signals(10000)
-    X = Int8[g == 1 && rand() < 0.5 ? 1 : rand(-1, 0, 1) for (i, g) in enumerate(G)]
+    X = Int8[g == 1 && rand() < 0.5 ? 1 : rand([-1, 0, 1]) for (i, g) in enumerate(G)]
     tc = conservation_analyze(X, G)
     @printf("γ = %.6f bits\n", tc.gamma)
     @printf("η = %.6f bits\n", tc.eta)
