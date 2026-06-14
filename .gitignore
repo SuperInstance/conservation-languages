@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.elixir/
+_build/
+deps/
+mix.lock
+conservation
+*.o
+*.so
+*.mod
+target/
+_conservation.d
+conservation.d
