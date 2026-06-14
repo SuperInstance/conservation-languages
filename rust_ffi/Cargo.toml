@@ -1,0 +1,16 @@
+[package]
+name = "fleet-compute"
+version = "0.1.0"
+edition = "2021"
+description = "FFI library for Chapel integration — branchless ternary fleet compute"
+license = "MIT"
+
+[lib]
+name = "fleet_compute"
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
