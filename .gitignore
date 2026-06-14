@@ -11,3 +11,6 @@ conservation
 target/
 _conservation.d
 conservation.d
+c/zero_alloc_lto
+c/zero_alloc_omp
+c/zero_alloc
