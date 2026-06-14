@@ -1,0 +1,43 @@
+[
+  {
+    "language": "Fortran 90 (OpenMP)",
+    "large_fleet": "1000000        0.9991        0.9990      0.01        26.3",
+    "output": " \u2550\u2550\u2550 SuperInstance Conservation Law \u2014 Fortran 90 \u2550\u2550\u2550\n OpenMP threads: 20\n \n \u2500\u2500\u2500 Monte Carlo Fleet Cancellation \u2500\u2500\u2500\n   Fleet     Empirical        Theory    Error%    Time(ms)\n       5        0.7092        0.6870      3.24        13.7\n      10        0.7933        0.7312      8.49         7.9\n      50        0.9088        0.8628      5.33         8.4\n     100        0.9357        0.9015      3.80         7.8\n    1000        0.9795        0.9684      1.14        18.3\n   10000        0.9934        0",
+    "elapsed": 0.24050068855285645
+  },
+  {
+    "language": "D (ldc2)",
+    "output": "\u2550\u2550\u2550 SuperInstance Conservation Law \u2014 D \u2550\u2550\u2550\nCPUs: 20\n\n\u2500\u2500\u2500 Monte Carlo Fleet Cancellation \u2500\u2500\u2500\nFleet    Empirical    Theory       Error%   Time(ms)  \n[\"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\", \"-\"]\n5        0.7124       0.6870       3.71     4         \n10       0.7943       ",
+    "elapsed": 0.3702075481414795
+  },
+  {
+    "language": "COBOL (GnuCOBOL)",
+    "output": " \n\u2550\u2550\u2550 SuperInstance Conservation Law \u2014 COBOL \u2550\u2550\u2550\n \n\u2500\u2500\u2500 Monte Carlo Fleet Cancellation \u2500\u2500\u2500\n  Fleet     Empirical    Theory       Error%\n  ---------------------------------------\n        5        0.5126     0.6869     0.38%\n       10        0.6489     0.7312     0.25%\n       50        0.8282     0.8628     0.00%\n      100        0.8798     0.9015     0.40%\n      500        0.9480     0.9554     0.76%\n     1000        0.9654     0.9684     0.31%\n     5000        0.9881     0.9858     0.23%\n    1000",
+    "elapsed": 4.92579984664917
+  },
+  {
+    "language": "R",
+    "output": "\u2550\u2550\u2550 SuperInstance Conservation Law \u2014 R \u2550\u2550\u2550\nR: R version 4.1.2 (2021-11-01) \n\n\u2500\u2500\u2500 Monte Carlo Fleet Cancellation \u2500\u2500\u2500\nFleet    Empirical    Theory       Error%   Time(ms)  \n------------------------------------------------------------ \n5        0.7159       0.6870       4.21     3.0       \n10       0.7948       0.7312       8.70     7.0       \n50       0.9078       0.8628       5.21     15.7      \n100      0.9353       0.9015       3.75     31.2      \n500      0.9708       0.9554       1.61     140",
+    "elapsed": 5.455268621444702
+  },
+  {
+    "language": "MATLAB/Octave",
+    "output": "",
+    "elapsed": 0.1305837631225586
+  },
+  {
+    "language": "Elixir/OTP (BEAM)",
+    "output": "\u2550\u2550\u2550 SuperInstance Conservation Law \u2014 Elixir/OTP \u2550\u2550\u2550\nBEAM schedulers: 20\n\n\u2500\u2500\u2500 Monte Carlo Fleet Cancellation (parallel) \u2500\u2500\u2500\n-----------------------------------------------------------------\nFleet     Empirical     Theory        Error%    Time(ms)  \n-----------------------------------------------------------------\n5         0.7124        0.6870        3.70      9         \n10        0.7968        0.7312        8.97      8         \n50        0.9081        0.8628        5.25      9         \n100       0.9355        0.9015        3.78      12        \n500       0.9701        0.9554        1.54      22        \n1000      0.9799        0.9684        1.19      41        \n5000      0.9909        0.9859        0.51      85        \n10000     0.9939        0.9900        0.39      11        \n\n\u2500\u2500\u2500 Conservat",
+    "elapsed": 0.8188204765319824
+  },
+  {
+    "language": "Julia (Threads.@threads)",
+    "output": "\u2550\u2550\u2550 SuperInstance Conservation Law \u2014 Julia \u2550\u2550\u2550\nJulia threads: 20\n\n\u2500\u2500\u2500 Monte Carlo Fleet Cancellation \u2500\u2500\u2500\nFleet    Empirical    Theory       Error%   Time(ms)  \n-------------------------------------------------------\n5        0.7151       0.6870       4.09     36.7      \n10       0.7957       0.7312       8.81     8.1       \n50       0.9092       0.8628       5.37     9.1       \n100      0.9352       0.9015       3.74     11.5      \n500      0.9710       0.9554       1.63     55.6      \n1000     ",
+    "elapsed": 4.756396055221558
+  },
+  {
+    "language": "Python\u2192C (ctypes FFI)",
+    "output": "=== Conservation Core \u2014 Test Suite ===\n\n[Struct Layout]\n  \u2713 conservation_state == 24 bytes\n  \u2713 ternary_signal == 32 bytes\n  \u2713 magnitude offset == 8\n\n[Conservation Compute]\n  \u2713 gamma=0.75\n  \u2713 eta=0.25\n  \u2713 C=1.0\n  \u2713 residual < 1e-12\n\n[Closed-Form]\n  \u2713 delta(50) formula match\n  \u2713 efficiency(50) \u2248 0.863\n\n[Monte Carlo C vs Python]\n  \u2713 MC agreement at n=100 (diff=0.0007)\n  \u2713 MC within 5% of theory\n\n[Ring Buffer]\n  \u2713 count == 2\n  \u2713 FIFO: agent_id == 7\n  \u2713 FIFO: agent_id == 8\n  \u2713 empty after drain\n  \u2713 c",
+    "elapsed": 0.7044391632080078
+  }
+]
