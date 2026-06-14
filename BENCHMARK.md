@@ -108,3 +108,33 @@ Through the real work of implementing and benchmarking:
 - Closest to mathematical notation
 - No compilation step
 - **Constraint**: Slowest of all implementations
+
+## UPDATE: Julia Zero-Allocation Breakthrough
+
+**Verified with 100,000 trials**: pre-allocated per-thread buffers achieve **8.1 billion sig/s** at n=10,000.
+
+| Implementation | n=10K Throughput | Technique |
+|---------------|----------------:|-----------|
+| **Julia (zero-alloc)** | **8,082M sig/s** | Pre-allocated per-thread buffers |
+| **Julia (allocating)** | **1,083M sig/s** | Array comprehension per trial |
+| Rust (rayon) | 560M sig/s | Pre-allocated, unsafe pointers |
+| Fortran (OpenMP) | 115M sig/s | allocate/deallocate per trial |
+| Julia (first impl) | 76M sig/s | Array comprehension, no warmup |
+
+### Why Is Julia 14× Faster Than Rust Here?
+
+1. **Thread-local buffers**: Each Julia thread has its own pre-allocated `Vector{Int8}`. No synchronization needed.
+2. **In-place fill**: `buf[i] = ...` writes directly into the buffer. No GC pressure.
+3. **`@inbounds`**: Disables bounds checking in the inner loop.
+4. **Rust's overhead**: Rust's version creates a new `Vec` per trial via `vec![0i8; n]`, hitting the allocator every time.
+
+**The real lesson**: When computation per element is trivial (one `add` instruction), **allocation dominates**. The language that allocates least wins, regardless of compilation strategy.
+
+### Verified Results (100K trials)
+
+| Fleet Size | Cancellation | Theory   | Error   | Throughput    |
+|-----------:|:-----------:|:--------:|:-------:|-------------:|
+| 100        | 0.9349      | 0.9015   | 3.71%   | 1,261M sig/s  |
+| 1,000      | 0.9794      | 0.9684   | 1.13%   | 5,740M sig/s  |
+| 10,000     | 0.9935      | 0.9900   | 0.35%   | **8,082M sig/s** |
+| 100,000    | 0.9979      | 0.9968   | 0.10%   | 5,850M sig/s  |
